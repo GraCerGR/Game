@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      temple_of_the_purple_reaper_0: -5079397015489518487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
