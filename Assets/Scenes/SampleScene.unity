@@ -1010,7 +1010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927012119985900067, guid: 43385d17824a03049ac25e258b78dd72, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7927012119985900067, guid: 43385d17824a03049ac25e258b78dd72, type: 3}
       propertyPath: m_TagString
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   shootRange: 1000
   shootableLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   damage: 10
   fireDelay: 0.3
   ammoCount: 100
@@ -1287,6 +1287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7927012119985900067, guid: 43385d17824a03049ac25e258b78dd72, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1308,7 +1312,7 @@ GameObject:
   - component: {fileID: 1923830341}
   - component: {fileID: 1923830344}
   - component: {fileID: 1923830345}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
