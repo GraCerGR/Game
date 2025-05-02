@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3647224544553983554}
   - component: {fileID: 9073473418232875602}
   - component: {fileID: 1663743480210050554}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Square
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2274982825330891494}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Shoot point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 7392331739823914817}
   - component: {fileID: 6687885097010100620}
   - component: {fileID: 7348309581429526123}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
