@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int health = 100;
+    
+    [SerializeField] public static int health = 100;
 
     public void TakeDamage(int amount)
     {
