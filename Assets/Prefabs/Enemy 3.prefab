@@ -116,8 +116,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0e79d41f243bce2479d6c063c179efde, type: 3}
-  m_Color: {r: 0, g: 0.15004349, b: 1, a: 1}
+  m_Sprite: {fileID: 3502969328532495018, guid: 99a2260668c6cea44903a5d895f1994f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44f43c8fe0da2547871374346c4f6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 120
+  maxHealth: 30
   dropPrefab: {fileID: 5944284960430815986, guid: a8dcd398f86efea41a182b5291ea4dd5, type: 3}
   dropSpawnPoint: {fileID: 2274982825330891494}
   isDropped: 1
@@ -222,7 +222,7 @@ Animator:
   m_GameObject: {fileID: 7927012119985900067}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9a88382b6f2b374c9693b8b3900909b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 98df47f37ac0b6e44ae3f3152741e200, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
