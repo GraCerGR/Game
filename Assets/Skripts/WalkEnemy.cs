@@ -47,8 +47,8 @@ public class WalkEnemy : MonoBehaviour
             // Преследуем игрока
             transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
             Vector3 direction = (player.position - transform.position).normalized;
-            rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
-
+            //rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+            rb.linearVelocity = direction * speed;
             animator.SetBool("IsMoving", true);
         }
         else
