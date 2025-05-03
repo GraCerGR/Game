@@ -79,6 +79,7 @@ public class WalkEnemy : MonoBehaviour
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
                 playerHealth.TakeDamage(damagePerHit);
+                
 
             yield return new WaitForSeconds(attackInterval);
         }

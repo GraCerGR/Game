@@ -22,6 +22,7 @@ public class FallingDust : MonoBehaviour
         {
             animator.SetTrigger("dust");
             Destroy(other.gameObject);
+            
         }
         
 

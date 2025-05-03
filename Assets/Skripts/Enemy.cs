@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -6,13 +7,23 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject dropPrefab;
     [SerializeField] private Transform dropSpawnPoint;
     [SerializeField] bool isDropped;
-
+    [SerializeField] private float damagePerHit;
+    private Transform player;
 
     private int currentHealth;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found");
+        }
     }
 
     public void TakeDamage(int amount)
@@ -29,6 +40,11 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         if (isDropped)  Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);// Можно заменить на анимацию смерти
+        
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+            playerHealth.TakeDustAngel(damagePerHit);
+
     }
 
     
