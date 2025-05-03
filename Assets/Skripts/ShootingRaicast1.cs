@@ -10,9 +10,12 @@ public class ShootingRaicast1 : MonoBehaviour
     private float fireElapsedTime = 0;
     [SerializeField] float fireDelay = 0.2f;
     [SerializeField] int ammoCount = 10;
-
-    [SerializeField] private LayerMask shildLayers;
-
+    private Animator animator;
+    [SerializeField] GameObject pistolImage;
+    private void Awake()
+    {
+        animator = pistolImage.GetComponent<Animator>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,9 +31,10 @@ public class ShootingRaicast1 : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetMouseButtonDown(0) && TryShootAmmo() && gameObject.activeInHierarchy) // Левая кнопка мыши
+        if (Input.GetMouseButtonDown(0) && TryShootAmmo() && gameObject.activeInHierarchy) // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         {
             Ray ray = new Ray(shootPoint.position, shootPoint.forward);
+            animator.SetTrigger("shoot");
             if (Physics.Raycast(ray, out RaycastHit hit, shootRange, shootableLayers))
             {
                 Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);

@@ -75,7 +75,7 @@ public class WalkEnemy : MonoBehaviour
         {
             animator.SetTrigger("Attack");
 
-            // Бъём игрока
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
                 playerHealth.TakeDamage(damagePerHit);

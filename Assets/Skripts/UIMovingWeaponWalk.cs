@@ -6,6 +6,7 @@ public class UIMovingWeaponWalk : MonoBehaviour
     private bool isMoving = false;
     private Animator cameraAnimator;
     [SerializeField] private Transform playerCamera;
+   
 
     private void Awake()
     {
