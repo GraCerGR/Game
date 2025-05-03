@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FlyingEnemyBullet : MonoBehaviour
 {
-    public float lifeTime = 5f;
-    public int damage = 20;
+    [SerializeField] float lifeTime = 5f;
+    [SerializeField] float damage = 20;
 
     private void Start()
     {

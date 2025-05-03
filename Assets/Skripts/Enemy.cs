@@ -4,7 +4,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject dropPrefab;
-    [SerializeField] private Transform firePoint;
+    [SerializeField] private Transform dropSpawnPoint;
+    [SerializeField] bool isDropped;
 
 
     private int currentHealth;
@@ -27,6 +28,10 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        Instantiate(dropPrefab, firePoint.position, firePoint.rotation);// Можно заменить на анимацию смерти
+        if (isDropped)  Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);// Можно заменить на анимацию смерти
     }
+
+    
+
+
 }

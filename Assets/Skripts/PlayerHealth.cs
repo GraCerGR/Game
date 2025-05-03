@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     
-    [SerializeField] public static int health = 100;
+    [SerializeField] public static float health = 100;
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         health -= amount;
         Debug.Log("Player HP: " + health);

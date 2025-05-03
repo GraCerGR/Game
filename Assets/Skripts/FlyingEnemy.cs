@@ -8,14 +8,18 @@ public class FlyingEnemy : MonoBehaviour
     public float detectionRange = 20f;
     public float fireCooldown = 2f;
     public float fireballSpeed = 10f;
-    Vector3 cameraPlace = new Vector3(0f, 1.4f, 0f); 
+    Vector3 cameraPlace = new Vector3(0f, 1.4f, 0f);
+    private bool isAttacking = false;
 
     private float lastFireTime;
+
+    Animator animator;
 
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player")?.transform;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -32,19 +36,23 @@ public class FlyingEnemy : MonoBehaviour
             {
                 ShootFireball();
                 lastFireTime = Time.time;
+                
             }
         }
     }
 
     private void ShootFireball()
     {
+        animator.SetTrigger("Attack");
+
+        // Подождать 0.2–0.5 секунды можно через Animation Event, если нужно
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = fireball.GetComponent<Rigidbody>();
         if (rb != null)
         {
             Vector3 direction = (player.position + cameraPlace - firePoint.position).normalized;
             rb.linearVelocity = direction * fireballSpeed;
-
         }
     }
+
 }
