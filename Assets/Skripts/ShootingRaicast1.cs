@@ -5,6 +5,7 @@ public class ShootingRaicast1 : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float shootRange = 100f;
     [SerializeField] private LayerMask shootableLayers;
+    [SerializeField] private LayerMask shildLayers;
     [SerializeField] private int damage = 10;
 
     private float fireElapsedTime = 0;

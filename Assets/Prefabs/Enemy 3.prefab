@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 7348309581429526123}
   - component: {fileID: 7745942359563137983}
   - component: {fileID: 6464479615282532055}
-  - component: {fileID: -1898830819295783958}
   - component: {fileID: -7147455607265750776}
+  - component: {fileID: -1898830819295783958}
   m_Layer: 9
   m_Name: Enemy 3
   m_TagString: Enemy
@@ -251,18 +251,6 @@ MonoBehaviour:
   enemyCount: 2
   shieldPrefab: {fileID: 2605444654131353962, guid: 6200cfe13d030ea459ddcdfa39aaa378, type: 3}
   beamPrefab: {fileID: 4987659118815542611, guid: 042a1f3cc973bbd4fa2ac47d842eb3bc, type: 3}
---- !u!114 &-1898830819295783958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7927012119985900067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c64f962a7b026604c81d307152962b87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-7147455607265750776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,3 +267,15 @@ MonoBehaviour:
   outerRadius: 20
   moveSpeed: 2
   hoverTime: 0
+--- !u!114 &-1898830819295783958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927012119985900067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64f962a7b026604c81d307152962b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
