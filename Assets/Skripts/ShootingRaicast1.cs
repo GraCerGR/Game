@@ -11,6 +11,7 @@ public class ShootingRaicast1 : MonoBehaviour
     [SerializeField] float fireDelay = 0.2f;
     [SerializeField] int ammoCount = 10;
 
+    [SerializeField] private LayerMask shildLayers;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,7 +35,7 @@ public class ShootingRaicast1 : MonoBehaviour
             {
                 Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
-                if (enemy != null)
+                if (enemy != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
                 {
                     enemy.TakeDamage(damage);
                 }
