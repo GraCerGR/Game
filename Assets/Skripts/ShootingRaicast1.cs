@@ -5,6 +5,7 @@ public class ShootingRaicast1 : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float shootRange = 100f;
     [SerializeField] private LayerMask shootableLayers;
+    [SerializeField] private LayerMask shildLayers;
     [SerializeField] private int damage = 10;
 
     private float fireElapsedTime = 0;
@@ -31,7 +32,7 @@ public class ShootingRaicast1 : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetMouseButtonDown(0) && TryShootAmmo() && gameObject.activeInHierarchy) // Левая кнопка мыши
+        if (Input.GetMouseButtonDown(0) && TryShootAmmo() && gameObject.activeInHierarchy) // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         {
             Ray ray = new Ray(shootPoint.position, shootPoint.forward);
             animator.SetTrigger("shoot");
@@ -39,7 +40,7 @@ public class ShootingRaicast1 : MonoBehaviour
             {
                 Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
-                if (enemy != null)
+                if (enemy != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
                 {
                     enemy.TakeDamage(damage);
                 }
