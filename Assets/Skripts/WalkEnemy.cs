@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WalkEnemy : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class WalkEnemy : MonoBehaviour
     private Transform player;
     private bool isAttacking = false;
     private Animator animator;
-    Rigidbody rb;
+    //Rigidbody rb;
+    private NavMeshAgent agent;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+
+        agent.acceleration = 1000f;
+        agent.angularSpeed = 999f;
+
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
         {
@@ -25,7 +32,7 @@ public class WalkEnemy : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player not found. Assign the 'Player' tag.");
+            Debug.LogError("Player not found");
         }
     }
 
@@ -37,24 +44,27 @@ public class WalkEnemy : MonoBehaviour
 
         if (distance <= attackRange)
         {
-            animator.SetBool("IsMoving", false);
+            agent.isStopped = true;
+            animator?.SetBool("IsMoving", false);
+
+            agent.SetDestination(transform.position);
 
             if (!isAttacking)
                 StartCoroutine(AttackRoutine());
         }
         else if (distance <= detectionRange)
         {
-            // Преследуем игрока
-            transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
-            Vector3 direction = (player.position - transform.position).normalized;
-            //rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
-            rb.linearVelocity = direction * speed;
-            animator.SetBool("IsMoving", true);
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
+            agent.speed = speed;
+            animator?.SetBool("IsMoving", true);
         }
         else
         {
-            animator.SetBool("IsMoving", false);
+            agent.isStopped = true;
+            animator?.SetBool("IsMoving", false);
         }
+
     }
 
     private IEnumerator AttackRoutine()
@@ -65,7 +75,7 @@ public class WalkEnemy : MonoBehaviour
         {
             animator.SetTrigger("Attack");
 
-            // Наносим урон игроку
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
                 playerHealth.TakeDamage(damagePerHit);
