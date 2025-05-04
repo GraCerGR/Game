@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -54,15 +55,20 @@ public class PlayerHealth : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (ADust>0&&ADust<100)
+        if (ADust > 0 && ADust < 100)
         {
             //ADust -= Time.deltaTime;
             Debug.Log(Time.time);
             nextActionTime += period;
-            ADust -= floatcountofdust* Time.deltaTime;
+            ADust -= floatcountofdust * Time.deltaTime;
             Dust2.text = $"{ADust:0}";
             // execute block of code here
         }
+        else if (ADust >= 100) 
+        {
+            SceneManager.LoadScene("BOS");
+        }
+        
 
 
         if (health > 75)

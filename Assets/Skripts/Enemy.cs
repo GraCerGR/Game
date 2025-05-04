@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private float luck;
     [SerializeField] private float luckOfDrop;
+    [SerializeField] private GameObject DiePrefab;
+
 
     private int currentHealth;
 
@@ -63,6 +65,9 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        Instantiate(DiePrefab, gameObject.transform.position /*+ new Vector3(0.1f, -0.75f, 0)*/, gameObject.transform.rotation);
+
+
         Destroy(gameObject);
         if (isDropped)  Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);
         

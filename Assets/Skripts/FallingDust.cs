@@ -6,12 +6,17 @@ public class FallingDust : MonoBehaviour
     //[SerializeField] float lifeTime = 60f;
     [SerializeField] GameObject player;
     Animator animator;
-
+    private float fireElapsedTime = 0;
+    private float fireDelay = 4.1f;
     private Transform player23;
 
     [SerializeField] float hp;
 
     private Transform pistol;
+
+
+    private PlayerSoundManager playerSounds;
+
     private void Awake()
     {
         
@@ -36,20 +41,45 @@ public class FallingDust : MonoBehaviour
             Debug.LogError("Player not found");
         }
 
-
+        playerSounds = player23.GetComponent<PlayerSoundManager>();
+        Debug.LogError(playerSounds);
 
 
     }
+
     private void Start()
     {
-        
+
     }
+    private void FixedUpdate()
+    {
+        fireElapsedTime += Time.deltaTime;
+
+        if (animator.GetBool("TakenDust")& fireElapsedTime < fireDelay)
+        {
+            animator.SetBool("TakenDust", false);
+        }
+
+    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("itemDust"))
         {
             animator.SetTrigger("dust");
+
+            if (fireElapsedTime >= fireDelay)
+            {
+                animator.SetBool("TakenDust", true);
+
+
+                fireElapsedTime = 0;
+            }
+
+            playerSounds.PlayDustSound();
+
+
             Destroy(other.gameObject);
 
             ShootingRaicast1 shootingRaycast = pistol.GetComponent<ShootingRaicast1>();
@@ -71,10 +101,11 @@ public class FallingDust : MonoBehaviour
             ShootingRaicast1 shootingRaycast = pistol.GetComponent<ShootingRaicast1>();
             if (shootingRaycast != null)
                 shootingRaycast.TakeAmmo();
-
             
+            playerSounds.PlayBulletSound();
 
-            
+
+
 
         }
 

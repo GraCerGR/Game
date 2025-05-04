@@ -319,12 +319,10 @@ MonoBehaviour:
   maxHealth: 20
   dropPrefab: {fileID: 5944284960430815986, guid: a8dcd398f86efea41a182b5291ea4dd5, type: 3}
   dropSpawnPoint: {fileID: 5886816149719073920}
-  isDropped: 0
   countOfDust: 5
-  damagePerHit: 0
+  luckOfDrop: 0
+  DiePrefab: {fileID: 4591195266565130522, guid: cdaa17e0640021946b4f1761d75ad078, type: 3}
   dieSound: {fileID: 0}
-  hitSound: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!65 &6661064504843967730
 BoxCollider:
   m_ObjectHideFlags: 0

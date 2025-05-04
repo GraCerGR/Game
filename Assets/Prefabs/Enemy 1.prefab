@@ -215,8 +215,7 @@ MonoBehaviour:
   dropSpawnPoint: {fileID: 2274982825330891494}
   countOfDust: 10
   luckOfDrop: 100
-  isDropped: 1
-  damagePerHit: 10
+  DiePrefab: {fileID: 4591195266565130522, guid: cdaa17e0640021946b4f1761d75ad078, type: 3}
   dieSound: {fileID: 8300000, guid: 464bac86d0c048748b7ea151757d7d99, type: 3}
 --- !u!114 &8059059196641609265
 MonoBehaviour:

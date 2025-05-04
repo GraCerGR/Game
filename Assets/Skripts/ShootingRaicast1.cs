@@ -7,6 +7,7 @@ public class ShootingRaicast1 : MonoBehaviour
     [SerializeField] private float shootRange = 100f;
     [SerializeField] private LayerMask shootableLayers;
     [SerializeField] private LayerMask shildLayers;
+    [SerializeField] private LayerMask wallsLayers;
     [SerializeField] private int damage = 10;
 
     private float fireElapsedTime = 0;
@@ -21,6 +22,9 @@ public class ShootingRaicast1 : MonoBehaviour
     [SerializeField] public float dustAnimationCounterDelay;
 
     [SerializeField] public int bulletsDropCount = 20;
+
+    [SerializeField] private GameObject bloodPrefab;
+    [SerializeField] private GameObject hiPrefab;
 
 
 
@@ -63,13 +67,57 @@ public class ShootingRaicast1 : MonoBehaviour
                 {
                     Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
                     Enemy enemy = hit.collider.GetComponent<Enemy>();
-                    if (enemy != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
+                    Debug.Log(hit.point);
+                    if (enemy != null && !Physics.Raycast(ray, out RaycastHit hit1, shootRange, shildLayers))
                     {
                         enemy.TakeDamage(damage);
+                        Debug.Log(hit1.point);
+                        Debug.Log("hit.point");
+                        Instantiate(bloodPrefab, hit.point+new Vector3(0.1f,-0.75f,0), hit.transform.rotation);
+                    }
+                    Debug.DrawRay(transform.position, hit.point, Color.green, 100.0f, false);
+                } else if(Physics.Raycast(ray, out RaycastHit hit1, shootRange, wallsLayers))
+                {
+                    
+
+                    // 1. Смещение вглубь от поверхности 
+                    Vector3 inwardOffset = hit1.normal * 0.1f;
+
+                    // 2. Смещение вниз по поверхности
+                    Vector3 surfaceDownOffset = Vector3.zero;
+                    Vector3 projectedDown = Vector3.ProjectOnPlane(Vector3.down, hit1.normal);
+
+                    // Проверка, есть ли смысл применять смещение
+                    if (projectedDown.sqrMagnitude > 0.001f)
+                    {
+                        surfaceDownOffset = projectedDown.normalized * 0.2f;
                     }
 
-                    Debug.DrawRay(transform.position, hit.point, Color.green, 100.0f, false);
+                    // 3. Общий вектор смещения
+                    Vector3 totalOffset = inwardOffset + surfaceDownOffset;
+
+                    // 4. Позиция спавна
+                    Vector3 spawnPos = hit1.point + totalOffset;
+
+                    // 5. Получаем позицию игрока
+                    Vector3 toPlayer = Camera.main.transform.position - spawnPos;
+
+                    // 6. Убираем вертикальную составляющую, чтобы спрайт не наклонялся вверх/вниз
+                    toPlayer.y = 0;
+                    toPlayer.Normalize();
+
+                    // 7. Поворот спрайта: стоит вертикально и смотрит на игрока
+                    Quaternion rotation = Quaternion.LookRotation(toPlayer);
+
+                    // 8. Спавн
+                    Instantiate(hiPrefab, spawnPos, rotation);
+
+
                 }
+
+
+
+
             }
             else
             {
@@ -84,6 +132,7 @@ public class ShootingRaicast1 : MonoBehaviour
     {
         //Debug.Log("dd");
         ammoCounter += bulletsDropCount;
+        ammoCount+= bulletsDropCount;
         Dust2.text = $"{ammoCounter:0}";
     }
    

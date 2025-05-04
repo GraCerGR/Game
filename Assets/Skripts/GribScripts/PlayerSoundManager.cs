@@ -10,6 +10,7 @@ public class PlayerSoundManager : MonoBehaviour
     public AudioClip gunSound;
     public AudioClip emptyGunSound;
     public AudioClip dustSound;
+    public AudioClip bulletSound;
     public AudioClip footstepClips;
 
     public void PlayHitEnemySound(AudioClip clip = null)
@@ -60,4 +61,14 @@ public class PlayerSoundManager : MonoBehaviour
     {
         Source.PlayOneShot(footstepClips, 3f);
     }
+    public void PlayBulletSound(AudioClip clip = null)
+    {
+        Debug.Log("CIICICICI");
+        if (clip != null)
+            Source.PlayOneShot(clip);
+        else
+            Source.PlayOneShot(bulletSound, 3f);
+    }
+
+
 }

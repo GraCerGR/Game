@@ -355,8 +355,7 @@ MonoBehaviour:
   dropSpawnPoint: {fileID: 9156025815866950704}
   countOfDust: 3
   luckOfDrop: 5
-  isDropped: 0
-  damagePerHit: 0
+  DiePrefab: {fileID: 4591195266565130522, guid: cdaa17e0640021946b4f1761d75ad078, type: 3}
   dieSound: {fileID: 8300000, guid: 464bac86d0c048748b7ea151757d7d99, type: 3}
 --- !u!65 &8054127126278458802
 BoxCollider:
