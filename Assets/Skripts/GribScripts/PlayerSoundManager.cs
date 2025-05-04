@@ -9,6 +9,8 @@ public class PlayerSoundManager : MonoBehaviour
     public AudioClip hitPlayerSound;
     public AudioClip gunSound;
     public AudioClip emptyGunSound;
+    public AudioClip dustSound;
+    public AudioClip footstepClips;
 
     public void PlayHitEnemySound(AudioClip clip = null)
     {
@@ -46,5 +48,16 @@ public class PlayerSoundManager : MonoBehaviour
             Source.PlayOneShot(clip);
         else
             Source.PlayOneShot(emptyGunSound, 0.75f);
+    }
+    public void PlayDustSound(AudioClip clip = null)
+    {
+        if (clip != null)
+            Source.PlayOneShot(clip);
+        else
+            Source.PlayOneShot(dustSound);
+    }
+    public void PlayFootstepSound()
+    {
+        Source.PlayOneShot(footstepClips, 3f);
     }
 }
