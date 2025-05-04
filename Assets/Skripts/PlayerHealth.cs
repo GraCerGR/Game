@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player HP: " + health);
         if (health <= 0)
         {
-            // ������
+            SceneManager.LoadScene("GameOver");
         }
     }
     public void TakeDustAngel(float a) 
@@ -55,6 +55,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
+
+
         if (ADust > 0 && ADust < 100)
         {
             //ADust -= Time.deltaTime;
