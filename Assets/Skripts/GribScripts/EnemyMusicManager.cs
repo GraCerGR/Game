@@ -97,7 +97,6 @@ public class EnemyMusicManager : MonoBehaviour
     {
         if (mainAudioSource.clip == newClip || newClip == null) yield break;
 
-        // Подготовка второго источника
         secondaryAudioSource.clip = newClip;
         secondaryAudioSource.volume = 0f;
         secondaryAudioSource.loop = true;
@@ -114,14 +113,13 @@ public class EnemyMusicManager : MonoBehaviour
             yield return null;
         }
 
-        // Обмен источниками
         var temp = mainAudioSource;
         mainAudioSource = secondaryAudioSource;
         secondaryAudioSource = temp;
 
         secondaryAudioSource.Stop();
         secondaryAudioSource.clip = null;
-        secondaryAudioSource.volume = 1f; // Подготовка к следующему переходу
+        secondaryAudioSource.volume = 1f;
         mainAudioSource.volume = 1f;
     }
 }
