@@ -9,9 +9,19 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Dust2;
 
     float ADust = 0;
+
+    // ---- Звуки ---- 
+    private PlayerSoundManager playerSounds;
+
+    private void Awake()
+    {
+        playerSounds = transform.GetComponent<PlayerSoundManager>();
+    }
+
     public void TakeDamage(float amount)
     {
-        
+        playerSounds.PlayHitPlayerSound();
+
         health -= amount;
         Debug.Log("Player HP: " + health);
         if (health <= 0)

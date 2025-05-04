@@ -27,11 +27,15 @@ public class FlyingProtectedEnemy : MonoBehaviour
     public GameObject beamPrefab;
     private List<GameObject> activeBeams = new List<GameObject>();
 
+    private EnemyAwareness awareness;
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player")?.transform;
         lastProtectedTime = Time.time - protectCooldown;
         animator = GetComponent<Animator>();
+
+        awareness = GetComponent<EnemyAwareness>();
     }
 
     void Update()
@@ -42,6 +46,18 @@ public class FlyingProtectedEnemy : MonoBehaviour
             FindRandomEnemyInRange();
             ProtectEnemy();
             lastProtectedTime = Time.time;
+        }
+
+        // ---- Музыка ----
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position + cameraPlace);
+
+        if (distanceToPlayer <= detectionRange + 5f)
+        {
+            if (awareness != null) awareness.isSeeYou = true;
+        }
+        else
+        {
+            if (awareness != null) awareness.isSeeYou = false;
         }
     }
 
