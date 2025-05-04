@@ -64,6 +64,7 @@ public class ShootingRaicast1 : MonoBehaviour
                 playerSounds.PlayGunSound();
 
                 if (Physics.Raycast(ray, out RaycastHit hit, shootRange, shootableLayers))
+                HealthStagesColliderControll enemy2 = hit.collider.GetComponent<HealthStagesColliderControll>();
                 {
                     Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
                     Enemy enemy = hit.collider.GetComponent<Enemy>();
@@ -113,6 +114,11 @@ public class ShootingRaicast1 : MonoBehaviour
                     Instantiate(hiPrefab, spawnPos, rotation);
 
 
+                }
+                
+                if (enemy2 != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
+                {
+                    enemy2.TakeDamage(damage);
                 }
 
 

@@ -7,16 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Level.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/ZHOPA.unity
-    guid: 132bcf9f29601a04190fa25ffc748bc5
+    path: Assets/Scenes/LevelBoss.unity
+    guid: 9865c9131d647344586544f452afcb0b
   - enabled: 1
-    path: Assets/Scenes/BOS.unity
-    guid: 899125d3c460eb7499d8537009483db0
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: 72a41aea6501901459be90a93fde6998
+    path: Assets/Scenes/ThisISTheEnd.unity
+    guid: b6acfc6568ef287438245aef15848553
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
