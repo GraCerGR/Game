@@ -64,8 +64,8 @@ public class ShootingRaicast1 : MonoBehaviour
                 playerSounds.PlayGunSound();
 
                 if (Physics.Raycast(ray, out RaycastHit hit, shootRange, shootableLayers))
-                HealthStagesColliderControll enemy2 = hit.collider.GetComponent<HealthStagesColliderControll>();
                 {
+                    HealthStagesColliderControll enemy2 = hit.collider.GetComponent<HealthStagesColliderControll>();
                     Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
                     Enemy enemy = hit.collider.GetComponent<Enemy>();
                     Debug.Log(hit.point);
@@ -76,6 +76,12 @@ public class ShootingRaicast1 : MonoBehaviour
                         Debug.Log("hit.point");
                         Instantiate(bloodPrefab, hit.point+new Vector3(0.1f,-0.75f,0), hit.transform.rotation);
                     }
+                    if (enemy2 != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
+                    {
+                        enemy2.TakeDamage(damage);
+                    }
+
+
                     Debug.DrawRay(transform.position, hit.point, Color.green, 100.0f, false);
                 } else if(Physics.Raycast(ray, out RaycastHit hit1, shootRange, wallsLayers))
                 {
@@ -116,10 +122,6 @@ public class ShootingRaicast1 : MonoBehaviour
 
                 }
                 
-                if (enemy2 != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
-                {
-                    enemy2.TakeDamage(damage);
-                }
 
 
 

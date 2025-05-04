@@ -32685,10 +32685,18 @@ MonoBehaviour:
   shildLayers:
     serializedVersion: 2
     m_Bits: 0
+  wallsLayers:
+    serializedVersion: 2
+    m_Bits: 0
   damage: 10
   fireDelay: 0.2
-  ammoCount: 100
   pistolImage: {fileID: 1063123678}
+  Dust2: {fileID: 0}
+  dustAnimationCounter: 4
+  dustAnimationCounterDelay: 0
+  bulletsDropCount: 20
+  bloodPrefab: {fileID: 0}
+  hiPrefab: {fileID: 0}
 --- !u!43 &703236530
 Mesh:
   m_ObjectHideFlags: 0
@@ -97195,6 +97203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dust2: {fileID: 0}
+  period: 0.1
+  floatcountofdust: 1
+  pistolImage: {fileID: 0}
 --- !u!114 &1997631311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97223,6 +97234,8 @@ MonoBehaviour:
   moveSpeed: 30
   mouseSensitivity: 2
   playerCamera: {fileID: 1191614929}
+  floorMotionVector: {x: 0, y: 0, z: 0}
+  gravity1: 50
   isMoving: 0
 --- !u!143 &1997631313
 CharacterController:
@@ -97278,6 +97291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1063123678}
+  hp: 0
 --- !u!43 &2000694140
 Mesh:
   m_ObjectHideFlags: 0
