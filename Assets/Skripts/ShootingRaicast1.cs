@@ -40,9 +40,15 @@ public class ShootingRaicast1 : MonoBehaviour
             {
                 Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
+                HealthStagesColliderControll enemy2 = hit.collider.GetComponent<HealthStagesColliderControll>();
                 if (enemy != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
                 {
                     enemy.TakeDamage(damage);
+                }
+                
+                if (enemy2 != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
+                {
+                    enemy2.TakeDamage(damage);
                 }
 
                 Debug.DrawRay(transform.position, hit.point, Color.green, 100.0f, false);

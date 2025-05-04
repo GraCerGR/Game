@@ -8,6 +8,7 @@ public class MOOVESCRIPT : MonoBehaviour
     public float moveSpeed = 50f;
     public float yOffset = -5f;
     public float endDelay = 1f;
+    
 
     private BossController bossController;
     

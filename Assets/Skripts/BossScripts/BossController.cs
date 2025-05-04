@@ -11,11 +11,7 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            bossAnimator.SetBool("ShiftYes", false);
-            bossAnimator.SetBool("IdleYes", true);
-        }
+        
     }
 
     public IEnumerator ShiftEvent()
@@ -27,6 +23,26 @@ public class BossController : MonoBehaviour
         
         bossAnimator.SetBool("ShiftYes", false);
         bossAnimator.SetBool("IdleYes", true);
+    }
+
+    public void ChangeToSecondStage()
+    {
+        bossAnimator.SetBool("Stage2Yes", true);
+    }
+
+    public void ChangeToThirdStage()
+    {
+        bossAnimator.SetBool("Stage3Yes", true);
+    }
+
+    public void ChangeToFourthStage()
+    {
+        bossAnimator.SetBool("Stage4Yes", true);
+    }
+
+    public IEnumerator SecondStage()
+    {
+        yield return new WaitForSeconds(1f); 
     }
     
 }
