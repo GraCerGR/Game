@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class FlyingEnemy : MonoBehaviour
 {
@@ -15,11 +16,18 @@ public class FlyingEnemy : MonoBehaviour
 
     Animator animator;
 
+    public AudioSource fireSource;
+    public AudioClip fireSound;
+
+    private EnemyAwareness awareness;
+
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player")?.transform;
         animator = GetComponent<Animator>();
+
+        awareness = GetComponent<EnemyAwareness>();
     }
 
     void Update()
@@ -39,6 +47,16 @@ public class FlyingEnemy : MonoBehaviour
                 
             }
         }
+
+        // ---- Музыка ----
+        if (distanceToPlayer <= detectionRange + 5f)
+        {
+            if (awareness != null) awareness.isSeeYou = true;
+}
+        else
+        {
+            if (awareness != null) awareness.isSeeYou = false;
+        }
     }
 
     private void ShootFireball()
@@ -47,6 +65,9 @@ public class FlyingEnemy : MonoBehaviour
 
         // Подождать 0.2–0.5 секунды можно через Animation Event, если нужно
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
+
+        fireSource.PlayOneShot(fireSound, 2f);
+
         Rigidbody rb = fireball.GetComponent<Rigidbody>();
         if (rb != null)
         {

@@ -10,14 +10,19 @@ public class Healt : MonoBehaviour
     
     private void Start()
     {
-        HP.text = "100%"; 
+        HP.text = "100"; 
     }
 
     private void Update()
     {
         float hpPercentage = PlayerHealth.health;
 
-        HP.text = $"{hpPercentage:0}%";
+        HP.text = $"{hpPercentage:0}";
+
+
+
+
+
     }
 
    /* public void TakeDamage(float damage)

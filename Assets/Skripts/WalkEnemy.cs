@@ -13,8 +13,10 @@ public class WalkEnemy : MonoBehaviour
     private Transform player;
     private bool isAttacking = false;
     private Animator animator;
-    //Rigidbody rb;
+
     private NavMeshAgent agent;
+
+    private EnemyAwareness awareness;
 
     private void Start()
     {
@@ -34,6 +36,9 @@ public class WalkEnemy : MonoBehaviour
         {
             Debug.LogError("Player not found");
         }
+
+        //playerObj.GetComponent<EnemyMusicManager>().RegisterEnemy(this);
+        awareness = GetComponent<EnemyAwareness>();
     }
 
     private void FixedUpdate()
@@ -65,6 +70,15 @@ public class WalkEnemy : MonoBehaviour
             animator?.SetBool("IsMoving", false);
         }
 
+        // ---- Музыка ----
+        if (distance <= detectionRange + 5f)
+        {
+            if (awareness != null) awareness.isSeeYou = true;
+        }
+        else
+        {
+            if (awareness != null) awareness.isSeeYou = false;
+        }
     }
 
     private IEnumerator AttackRoutine()
