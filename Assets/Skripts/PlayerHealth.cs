@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player HP: " + health);
         if (health <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("ZHOPA GRISHA 2");
         }
     }
     public void TakeDustAngel(float a) 
