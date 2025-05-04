@@ -37,7 +37,6 @@ public class FairyController : MonoBehaviour
             return;
         }
 
-        // Если фея внутри внутреннего радиуса, перебирается наружу
         if (distToPlayer < innerRadius && !isMoving)
         {
             Vector3 dirOutward = (transform.position - player.position).normalized;
@@ -49,7 +48,6 @@ public class FairyController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-            // Плавный поворот
             Vector3 direction = targetPosition - transform.position;
             if (direction != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 5f);
@@ -65,8 +63,6 @@ public class FairyController : MonoBehaviour
     IEnumerator MovementLoop()
     {
         yield return new WaitForSeconds(hoverTime);
-        Debug.LogError("Sosi");
-        // Случайная точка в кольце между inner и outer радиусом
         int maxAttempts = 10;
         for (int i = 0; i < maxAttempts; i++)
         {
@@ -74,7 +70,7 @@ public class FairyController : MonoBehaviour
             float heightOffset = Random.Range(1f, 3f);
             Vector3 candidate = player.position + new Vector3(circle.x, heightOffset, circle.y);
 
-            // Проверка на стену
+
             if (!Physics.Linecast(transform.position, candidate))
             {
                 targetPosition = candidate;

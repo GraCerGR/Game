@@ -23,6 +23,10 @@ public class ShootingRaicast1 : MonoBehaviour
     [SerializeField] public int bulletsDropCount = 20;
 
 
+
+    // ---- Звуки ---- 
+    private PlayerSoundManager playerSounds;
+
     private void Awake()
     {
         animator = pistolImage.GetComponent<Animator>();
@@ -32,10 +36,9 @@ public class ShootingRaicast1 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerSounds = GameObject.FindWithTag("Player").GetComponent<PlayerSoundManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         fireElapsedTime += Time.deltaTime;
@@ -45,22 +48,35 @@ public class ShootingRaicast1 : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetMouseButtonDown(0) && TryShootAmmo() && gameObject.activeInHierarchy) // ����� ������ ����
+        if (Input.GetMouseButtonDown(0) && gameObject.activeInHierarchy) // Выстрел
         {
-            Ray ray = new Ray(shootPoint.position, shootPoint.forward);
-            animator.SetTrigger("shoot");
-            if (Physics.Raycast(ray, out RaycastHit hit, shootRange, shootableLayers))
-            {
-                Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
-                Enemy enemy = hit.collider.GetComponent<Enemy>();
-                if (enemy != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
-                {
-                    enemy.TakeDamage(damage);
-                }
+            bool didShoot = TryShootAmmo();
 
-                Debug.DrawRay(transform.position, hit.point, Color.green, 100.0f, false);
+            if (didShoot)
+            {
+                Ray ray = new Ray(shootPoint.position, shootPoint.forward);
+                animator.SetTrigger("shoot");
+
+                playerSounds.PlayGunSound();
+
+                if (Physics.Raycast(ray, out RaycastHit hit, shootRange, shootableLayers))
+                {
+                    Debug.DrawLine(shootPoint.position, hit.point, Color.red, 1f);
+                    Enemy enemy = hit.collider.GetComponent<Enemy>();
+                    if (enemy != null && !Physics.Raycast(ray, out hit, shootRange, shildLayers))
+                    {
+                        enemy.TakeDamage(damage);
+                    }
+
+                    Debug.DrawRay(transform.position, hit.point, Color.green, 100.0f, false);
+                }
             }
-            
+            else
+            {
+                if (fireElapsedTime >= fireDelay)
+                    playerSounds.PlayEmptyGunSound();
+            }
+
         }
     }
 

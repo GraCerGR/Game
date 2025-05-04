@@ -16,21 +16,24 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
 
     float ADust = 0;
+    private PlayerSoundManager playerSounds;
 
 
     private void Awake()
     {
         animator = pistolImage.GetComponent<Animator>();
+        playerSounds = transform.GetComponent<PlayerSoundManager>();
     }
 
     public void TakeDamage(float amount)
     {
-        
+        playerSounds.PlayHitPlayerSound();
+
         health -= amount;
         Debug.Log("Player HP: " + health);
         if (health <= 0)
         {
-            // смерть
+            // пїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
     public void TakeDustAngel(float a) 

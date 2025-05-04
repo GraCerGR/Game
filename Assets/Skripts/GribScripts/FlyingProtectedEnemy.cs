@@ -27,11 +27,15 @@ public class FlyingProtectedEnemy : MonoBehaviour
     public GameObject beamPrefab;
     private List<GameObject> activeBeams = new List<GameObject>();
 
+    private EnemyAwareness awareness;
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player")?.transform;
         lastProtectedTime = Time.time - protectCooldown;
         animator = GetComponent<Animator>();
+
+        awareness = GetComponent<EnemyAwareness>();
     }
 
     void Update()
@@ -42,6 +46,18 @@ public class FlyingProtectedEnemy : MonoBehaviour
             FindRandomEnemyInRange();
             ProtectEnemy();
             lastProtectedTime = Time.time;
+        }
+
+        // ---- Музыка ----
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position + cameraPlace);
+
+        if (distanceToPlayer <= detectionRange + 5f)
+        {
+            if (awareness != null) awareness.isSeeYou = true;
+        }
+        else
+        {
+            if (awareness != null) awareness.isSeeYou = false;
         }
     }
 
@@ -166,10 +182,8 @@ public class FlyingProtectedEnemy : MonoBehaviour
             GradientAlphaKey[] alphaKeys = originalGradient.alphaKeys;
             float initialAlpha = alphaKeys.Length > 0 ? alphaKeys[0].alpha : 1f;
 
-            // Показываем луч 0.3 сек
             yield return new WaitForSeconds(0.1f);
 
-            // Плавное затухание за 0.2 сек
             float fadeTime = 0.2f;
             float elapsed = 0f;
 

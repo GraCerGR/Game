@@ -30,7 +30,10 @@ public class PlayerController : MonoBehaviour
 
     private Animator cameraAnimator;
 
-    
+
+    private PlayerSoundManager playerSounds;
+    private float stepInterval = 1f;
+    private float stepTimer;
 
 
     private void Awake()
@@ -38,6 +41,9 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         cameraAnimator = playerCamera.GetComponent<Animator>();
+
+        playerSounds = transform.GetComponent<PlayerSoundManager>();
+        stepTimer = Time.time;
     }
 
     private void Update()
@@ -80,6 +86,16 @@ public class PlayerController : MonoBehaviour
         floorMotionVector.y = ySpeed; // Apply gravity to your movement vector*/
 
 
+
+
+        if (isMoving && characterController.isGrounded)
+        {
+            if (stepTimer + 0.85f <= Time.time)
+            {
+                playerSounds.PlayFootstepSound();
+                stepTimer = Time.time;
+            }
+        }
 
     }
 

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Runtime;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float luckOfDrop;
 
     private int currentHealth;
+
+    // ---- пїЅпїЅпїЅпїЅпїЅ ---- 
+    private PlayerSoundManager playerSounds;
+    public AudioClip dieSound;
 
     private void Awake()
     {
@@ -36,14 +41,22 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Player not found");
         }
+
+        playerSounds = player.GetComponent<PlayerSoundManager>();
     }
 
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        if (currentHealth > 0)
+        {
+            playerSounds.PlayHitEnemySound();
+        }
+
         Debug.Log("Enemy took damage, current HP: " + currentHealth);
         if (currentHealth <= 0)
         {
+            playerSounds.PlayDieSound(dieSound);
             Die();
         }
     }
@@ -51,7 +64,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        if (isDropped)  Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);// Можно заменить на анимацию смерти
+        if (isDropped)  Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);
         
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
