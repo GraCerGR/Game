@@ -1,19 +1,31 @@
 using TMPro;
 using UnityEngine;
+using System.Runtime;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject dropPrefab;
     [SerializeField] private Transform dropSpawnPoint;
-    [SerializeField] bool isDropped;
-    [SerializeField] private float damagePerHit;
+     bool isDropped = false;
+    [SerializeField] private float countOfDust;
     private Transform player;
+    private float luck;
+    [SerializeField] private float luckOfDrop;
 
     private int currentHealth;
 
     private void Awake()
     {
+        luck = Random.value;
+        Debug.Log(luck);
+
+        if (luck < luckOfDrop/100)
+        {
+                isDropped = true;
+        }
+        
+
         currentHealth = maxHealth;
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
@@ -43,7 +55,7 @@ public class Enemy : MonoBehaviour
         
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
-            playerHealth.TakeDustAngel(damagePerHit);
+            playerHealth.TakeDustAngel(countOfDust);
 
     }
 

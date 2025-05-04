@@ -211,8 +211,8 @@ MonoBehaviour:
   maxHealth: 40
   dropPrefab: {fileID: 5944284960430815986, guid: a8dcd398f86efea41a182b5291ea4dd5, type: 3}
   dropSpawnPoint: {fileID: 2274982825330891494}
-  isDropped: 1
-  damagePerHit: 10
+  countOfDust: 10
+  luckOfDrop: 100
 --- !u!114 &8059059196641609265
 MonoBehaviour:
   m_ObjectHideFlags: 0

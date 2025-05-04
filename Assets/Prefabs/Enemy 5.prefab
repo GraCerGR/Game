@@ -352,6 +352,7 @@ MonoBehaviour:
   dropPrefab: {fileID: 5944284960430815986, guid: a8dcd398f86efea41a182b5291ea4dd5, type: 3}
   dropSpawnPoint: {fileID: 9156025815866950704}
   isDropped: 0
+  countOfDust: 10
 --- !u!65 &8054127126278458802
 BoxCollider:
   m_ObjectHideFlags: 0

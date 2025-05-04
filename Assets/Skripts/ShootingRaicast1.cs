@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ShootingRaicast1 : MonoBehaviour
@@ -10,12 +11,23 @@ public class ShootingRaicast1 : MonoBehaviour
 
     private float fireElapsedTime = 0;
     [SerializeField] float fireDelay = 0.2f;
-    [SerializeField] int ammoCount = 10;
+    [SerializeField] public static int ammoCount = 100;
     private Animator animator;
     [SerializeField] GameObject pistolImage;
+    [SerializeField] private TextMeshProUGUI Dust2;
+    private int ammoCounter = ammoCount;
+
+    [SerializeField] public float dustAnimationCounter=4f;
+    [SerializeField] public float dustAnimationCounterDelay;
+
+    [SerializeField] public int bulletsDropCount = 20;
+
+
     private void Awake()
     {
         animator = pistolImage.GetComponent<Animator>();
+        Dust2.text = $"{ammoCount:0}";
+        dustAnimationCounterDelay = 4f;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +39,7 @@ public class ShootingRaicast1 : MonoBehaviour
     void Update()
     {
         fireElapsedTime += Time.deltaTime;
+        dustAnimationCounterDelay += Time.deltaTime;
         HandleShooting();
     }
 
@@ -51,13 +64,23 @@ public class ShootingRaicast1 : MonoBehaviour
         }
     }
 
-
+    public void TakeAmmo()
+    {
+        //Debug.Log("dd");
+        ammoCounter += bulletsDropCount;
+        Dust2.text = $"{ammoCounter:0}";
+    }
    
 
     public bool TryShootAmmo()
     {
-        if (ammoCount > 0 && fireElapsedTime >= fireDelay)
+        if (ammoCount > 0 && fireElapsedTime >= fireDelay&& dustAnimationCounterDelay>= dustAnimationCounter)
         {
+            ammoCounter --;
+            Dust2.text = $"{ammoCounter:0}";
+
+
+
             ammoCount--;
             fireElapsedTime = 0;
             return true;

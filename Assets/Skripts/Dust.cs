@@ -8,7 +8,7 @@ public class Dust : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Dust2.text = "0%";
+        Dust2.text = "0";
     }
 
     // Update is called once per frame

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -11,13 +12,14 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController characterController;
     private float verticalRotation = 0f;
-    private float gravity = -9.81f;
+    private float gravity = -9.81f*6;
     private float verticalVelocity = 0f;
 
-    
 
+    public Vector3 floorMotionVector;
+    private float ySpeed;
+    public float gravity1 = 50;
 
-    
 
 
     private float characterVelocityY;
@@ -73,6 +75,11 @@ public class PlayerController : MonoBehaviour
             isMoving = moving;
             cameraAnimator.SetBool("isWalking", isMoving);
         }
+       /* floorMotionVector = new Vector3(moveX, 0, moveZ).normalized;
+        ySpeed -= gravity1 * Time.deltaTime; // Apply a constant gravity every frame
+        floorMotionVector.y = ySpeed; // Apply gravity to your movement vector*/
+
+
 
     }
 
