@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 2920979753023749663, guid: 0754924b4c6e7234993a8a682970aa49, type: 3}
   firePoint: {fileID: 2274982825330891494}
-  detectionRange: 20
+  detectionRange: 25
   fireCooldown: 2
   fireballSpeed: 40
   fireSource: {fileID: 1703901309720606195}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerRadius: 10
-  outerRadius: 20
+  outerRadius: 25
   moveSpeed: 2
   hoverTime: 0
 --- !u!114 &360866607145211272

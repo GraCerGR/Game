@@ -48,9 +48,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
-        HandleMouseLook();
-        
+        if (Time.timeScale == 1)
+        {
+            HandleMovement();
+            HandleMouseLook();
+        }
     }
 
     private void HandleMovement()
@@ -113,7 +115,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
+    public void SetMouseSensitivity(float sensitivity)
+    {
+        mouseSensitivity = sensitivity;
+    }
 
 
 
